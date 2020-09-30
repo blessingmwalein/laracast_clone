@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Exceptions\AuthFailedEception;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request as HttpRequest;
+use Request;
+use App\Exceptions\AuthFailedException;
 
 class LoginController extends Controller
 {
@@ -36,5 +40,20 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function authenticated(Request $request, $user)
+    {
+
+        session()->flash('success', 'Succefully logged in');
+
+        return response()->json([
+            'status' => 'ok'
+        ]);
+    }
+
+    protected function sendFailedLoginResponse()
+    {
+        throw new AuthFailedException;
     }
 }

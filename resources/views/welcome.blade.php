@@ -1,100 +1,77 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+@section('header')
+ <header class="header header-inverse h-fullscreen pb-80" style="background-color: #00aff0">
+            <div class="container text-center">
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+                <div class="row h-full">
+                <div class="col-12 col-lg-8 offset-lg-2 align-self-center">
 
-            .full-height {
-                height: 100vh;
-            }
+                    <h1 class="display-1 hidden-sm-down">BAHDCASTS</h1>
+                    <h1 class="fs-40 hidden-md-up">BAHDCASTS</h1>
+                    <br>
+                    <p class="fs-20 w-600 mx-auto hidden-sm-down">Video or voice call anyone in the world, for free. Bring family and friends together on a free group video call.</p>
+                    <p class="fs-16 hidden-md-up">Video or voice call anyone in the world, for free.</p>
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+                    <hr class="w-80">
+                    <br>
 
-            .position-ref {
-                position: relative;
-            }
+                    <a class="btn btn-xl btn-round btn-white w-300 mr-12 hidden-sm-down" href="#">Get Started</a>
+                    <a class="btn btn-lg btn-round btn-white w-250 hidden-md-up" href="#">Download Skype</a>
+                    <a class="btn btn-xl btn-round btn-outline btn-white w-300 hidden-sm-down" href="#">Start a conversation</a>
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div class="col-12 align-self-end text-center">
+                    <a class="scroll-down-1 scroll-down-inverse" href="#" data-scrollto="section-intro"><span></span></a>
                 </div>
+
+                </div>
+
             </div>
+        </header>
+
+         <main class="main-content">
+
+
+
+
+      <!--
+      |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+      | Basic cards
+      |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+      !-->
+      <section class="section bg-gray">
+        <div class="container">
+
+            @forelse ($series as $s)
+                 <div class="card mb-30">
+                    <div class="row align-items-center h-full">
+                    <div class="col-12 col-md-4">
+                        <a href="blog-single.html"><img src="assets/img/blog-1.jpg" alt="..."></a>
+                    </div>
+
+                    <div class="col-12 col-md-8">
+                        <div class="card-block">
+                        <h4 class="card-title">{{ $s->title }}</h4>
+                        <p class="card-text">{{ $s->description }}</p>
+                        <a class="fw-600 fs-12" href="blog-single.html">Read more <i class="fa fa-chevron-right fs-9 pl-8"></i></a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            @empty
+
+            @endforelse
+       
         </div>
-    </body>
-</html>
+      </section>
+
+
+
+
+
+
+    </main>
+@endsection
